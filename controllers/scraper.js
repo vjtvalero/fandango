@@ -1,7 +1,8 @@
 const axios = require('axios');
+const db = require('../helpers/db');
 
 const fetchItems = async () => {
-  const url = 'https://www.reddit.com/r/pics/new.json?limit=10';
+  const url = 'https://www.reddit.com/r/gifs/new.json?limit=10';
 
   const response = await axios.get(url);
   const children = response.data.data.children;
@@ -18,11 +19,15 @@ const fetchItems = async () => {
 
 const insertItems = async (items) => {
   try {
-    await query('INSERT INTO content () VALUES ()');
+    await db.query('INSERT INTO content (image, title, author, link) VALUES ?', [
+      items.map((item) => Object.values(item)),
+    ]);
+  } catch (e) {
+    console.log(e);
   } finally {
-    conn.end();
+    db.end();
     return true;
   }
 };
 
-module.exports = { fetchItems };
+module.exports = { fetchItems, insertItems };

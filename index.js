@@ -1,8 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = 3010;
 const path = require('path');
-const { fetchItems } = require('./controllers/scraper.js');
+const { fetchItems, insertItems } = require('./controllers/scraper.js');
 
 app.use(express.static('static'));
 

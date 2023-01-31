@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve('pages/index.html'));
 });
 
-app.get('/fire', async (req, res) => {
+app.get('/fetch', async (req, res) => {
   const items = await fetchItems();
   await insertItems(items);
   res.send('Success!');

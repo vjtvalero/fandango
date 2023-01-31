@@ -2,7 +2,7 @@ const axios = require('axios');
 const db = require('../helpers/db');
 
 const fetchItems = async () => {
-  const url = 'https://www.reddit.com/r/gifs/new.json?limit=10';
+  const url = 'https://www.reddit.com/r/scriptedasiangifs/new.json?limit=10';
 
   const response = await axios.get(url);
   const children = response.data.data.children;
